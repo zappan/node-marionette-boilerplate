@@ -1,0 +1,5 @@
+*.bak
+*.log
+build/
+node_modules/
+server/public/

@@ -1,0 +1,24 @@
+{
+    "name": "[APPLICATION_NAME]"
+  , "description": "[APPLICATION_DESCRIPTION]"
+  , "appFilename": "[APPLICATION_BUILD_FILENAME]"
+  , "version": "0.1.0"
+  , "devDependencies": {
+      "grunt"           : "~0.3.x"
+    , "grunt-contrib"   : "~0.3.x"
+    , "grunt-requirejs" : "~0.3.x"
+    , "grunt-replace"   : "~0.3.x"
+    , "grunt-exec"      : "~0.3.x"
+    , "grunt-shell"     : "git://github.com/zappan/grunt-shell-spawn.git"
+    , "requirejs"       : "~2.1.x"
+    , "lodash"          : "~0.10.x"
+    , "mocha"           : "~1.8.x"
+    , "chai"            : "~1.5.x"
+    , "chai-jquery"     : "~1.1.x"
+    , "supertest"       : "~0.3.0"
+    , "sinon"           : "~1.5.x"
+    , "sinon-chai"      : "~2.3.x"
+    , "grunt-mocha"     : "~0.1.x"
+    , "grunt-simple-mocha" : "~0.2.0"
+  }
+}

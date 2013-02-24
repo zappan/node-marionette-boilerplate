@@ -1,7 +1,7 @@
 /** Loading main application module with dependencies and kicking it off */
 require([
-    '[appFile]'
-  , '[DefaultLayoutFile]'
+    'app'
+  , 'layout'
   , 'jquery'
 ], function (app, Layout, $) {
 

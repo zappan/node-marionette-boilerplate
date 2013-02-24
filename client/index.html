@@ -1,0 +1,23 @@
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ appTitle }}</title>
+  @@appStyleTag
+  @@lessScriptTag
+</head>
+<body>
+  <h1>Welcome to Marionette.js!</h1>
+  <div id="container"></div>
+  <!-- app entry point script load and script with app data bootstrap data-->
+  @@appScriptTag
+  <script type="text/javascript">
+    window.appBootstrap = {
+        appConfig : {{ appConfig }}
+      , appData   : {{ appData }}
+    };
+  </script>
+</body>
+</html>

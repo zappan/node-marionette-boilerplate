@@ -210,6 +210,20 @@ module.exports = function(grunt) {
 
     shell: {
       devSymlink: { command: './scripts/devsymlink.sh' }
+    },
+
+    // running mocha tests covering server code (Node.js)
+    simplemocha: {
+      options: {
+          timeout       : 3000
+        , ignoreLeaks   : false
+        , globals       : ['NODE_CONFIG']
+        , ui            : 'bdd'
+        , reporter      : 'dot'
+      },
+      server: {
+        src: ['server/test/init.js', 'server/test/**/*.spec.js']
+      }
     }
   });
 
@@ -220,13 +234,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-simple-mocha');
 
 
   // ### Combo-tasks definitions
 
-  grunt.registerTask('testServer', 'jshint:server jshint:testServer clean:public replace:dev exec:devSymlink simplemocha:server');
-  grunt.registerTask('testClient', 'jshint:client jshint:testClient replace:testClient mocha:client');
-  grunt.registerTask('test', 'jshint:grunt testServer testClient');
+  grunt.registerTask('testServer', ['jshint:server', 'jshint:testServer', 'clean:public', 'replace:dev', 'shell:devSymlink', 'simplemocha:server']);
+  grunt.registerTask('test', ['jshint:grunt', 'testServer']);
 
 
   // jshints source, cleans build dir, hooks dev paths into HTML app shell,

@@ -11,8 +11,12 @@
     "grunt-replace": "~0.4.x",
     "grunt-shell": "~0.2.x",
     "lodash": "~1.0.x",
+    "requirejs": "~2.1.x",
     "mocha": "~1.8.x",
     "chai": "~1.5.x",
-    "requirejs": "~2.1.x"
+    "sinon": "~1.6.x",
+    "sinon-chai": "~2.3.x",
+    "sandboxed-module": "~0.2.x",
+    "grunt-simple-mocha": "~0.3.x"
   }
 }

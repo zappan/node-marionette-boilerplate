@@ -17,6 +17,7 @@
     "sinon": "~1.6.x",
     "sinon-chai": "~2.3.x",
     "sandboxed-module": "~0.2.x",
-    "grunt-simple-mocha": "~0.3.x"
+    "grunt-simple-mocha": "~0.3.x",
+    "chai-jquery": "~1.1.x"
   }
 }

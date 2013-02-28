@@ -3,7 +3,7 @@ require.config({
 
   // Initialize the application main module or test runner
   // (a clever test detection trick picked up from https://github.com/rmurphey/srchr-demo/blob/master/app/config.js )
-  deps: ('undefined' !== typeof window && window.mocha) ? ['../test/runner'] : ['main'],
+  deps: ('undefined' !== typeof window && window.mocha) ? ['../../test/runner'] : ['main'],
 
   // Configuring libraries aliases (shortcuts)
   // r.js exclude from build via 'empty:' value here, or in requirejs config in grunt.js via excludeShallow or regexp

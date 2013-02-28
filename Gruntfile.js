@@ -132,7 +132,7 @@ module.exports = function(grunt) {
       testClient: {
         options: {
           variables: {
-              specFiles : grunt.file.expand('client/test/**/*.spec.js').join("'\n      , '")
+              specFiles : grunt.file.expand('client/test/js/**/*.spec.js').join("'\n      , '")
           }
         },
         files: {
@@ -224,6 +224,10 @@ module.exports = function(grunt) {
       server: {
         src: ['server/test/init.js', 'server/test/**/*.spec.js']
       }
+    },
+
+    mocha: {
+      runner: ['<%= dirs.srcClientTests %>/runner.html']
     }
   });
 
@@ -232,15 +236,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib');
   grunt.loadNpmTasks('grunt-requirejs');
   grunt.loadNpmTasks('grunt-replace');
-  grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-mocha');
 
 
   // ### Combo-tasks definitions
 
   grunt.registerTask('testServer', ['jshint:server', 'jshint:testServer', 'clean:public', 'replace:dev', 'shell:devSymlink', 'simplemocha:server']);
-  grunt.registerTask('test', ['jshint:grunt', 'testServer']);
+  grunt.registerTask('testClient', ['jshint:client', 'jshint:testClient', 'replace:testClient', 'mocha']);
+  grunt.registerTask('test', ['jshint:grunt', 'testServer', 'testClient']);
 
 
   // jshints source, cleans build dir, hooks dev paths into HTML app shell,

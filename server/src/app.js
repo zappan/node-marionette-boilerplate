@@ -4,8 +4,9 @@
 require('./util/env');  // FIRST => Environment check (check is a self-invoked function within the module)
 
 var _             = require('lodash')
+  , winston       = require('winston')
   , sprintf       = require('sprintf').sprintf
-  , funcPath    = require('node-module-util').funcPath
+  , funcPath      = require('node-module-util').funcPath
   ;
 
 // gets app config from passed in options, env vars and local config if available
@@ -75,7 +76,7 @@ function init(options) {
   server = app.listen(app.get('port'), function() {
     var logMsg = sprintf('%s application Express server listening on port %d in %s mode'
                           , app.get('name'), app.get('port'), app.settings.env);
-    console.log(logMsg);
+    winston.info(logMsg);
   });
 }
 

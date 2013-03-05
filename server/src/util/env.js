@@ -3,6 +3,7 @@
 // Throws if any of them missing
 
 var _       = require('lodash')
+  , winston = require('winston')
   , sprintf = require('sprintf').sprintf
     // list of mandatory environment variables
   , mandatoryEnvVars  = [
@@ -14,7 +15,7 @@ function _checkMandatoryEnvVars() {
   _.each(mandatoryEnvVars, function(envVar) {
     if (_.isUndefined(process.env[envVar])) {
       var errMsg = sprintf('Missing mandatory environment variable: %s', envVar);
-      console.log(errMsg);
+      winston.error(errMsg);
       throw new Error(errMsg);
     }
   });
@@ -22,11 +23,11 @@ function _checkMandatoryEnvVars() {
 
 function _logAllEnvVars() {
   var envVarsSorted = _.sortBy(_.keys(process.env), function(envVar) { return envVar; });
-  console.log('[=============== BEGIN :: Listing all environment variables ===============]');
+  winston.info('[=============== BEGIN :: Listing all environment variables ===============]');
   _.each(envVarsSorted, function (envVar) {
-    console.log(sprintf('[EnvVar] %s=%s', envVar, process.env[envVar]));
+    winston.info(sprintf('[EnvVar] %s=%s', envVar, process.env[envVar]));
   });
-  console.log('[=============== END :: Listing all environment variables ===============]');
+  winston.info('[=============== END :: Listing all environment variables ===============]');
 }
 
 

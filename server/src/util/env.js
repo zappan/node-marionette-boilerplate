@@ -8,6 +8,13 @@ var _       = require('lodash')
     // list of mandatory environment variables
   , mandatoryEnvVars  = [
         'APP_PORT'
+      , 'LOGGING_SERVERAPP_TRESHOLD'
+      , 'LOGGING_CLIENTAPP_TRESHOLD'
+      , 'LOGGING_BROWSER_CONSOLE_TRESHOLD'
+      , 'LOGGING_CONSOLE_ACTIVE'
+      , 'LOGGING_FILE_ACTIVE'
+      , 'LOGGING_FILE_PATH'
+      , 'LOGGING_FILE_FILENAME'
     ];
 
 

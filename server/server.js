@@ -1,6 +1,6 @@
 var appOptions = {
         appName   : 'APPLICATION_NAME'
-      , appPort   : process.env['APPLICATION_NAME_APP_PORT'] || 3000    // mandatory env var (tmp failover to 3000 until env vars set up)
+      , appPort   : parseInt(process.env['APP_PORT'], 10)    // mandatory env var
       , Router    : require('./src/router')
       , appTitle  : 'APPLICATION_HTML_TITLE'
     };

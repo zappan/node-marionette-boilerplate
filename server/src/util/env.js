@@ -6,12 +6,13 @@ var _       = require('lodash')
   , sprintf = require('sprintf').sprintf
     // list of mandatory environment variables
   , mandatoryEnvVars  = [
+        'APP_PORT'
     ];
 
 
 function _checkMandatoryEnvVars() {
   _.each(mandatoryEnvVars, function(envVar) {
-    if (!process.env[envVar]) {
+    if (_.isUndefined(process.env[envVar])) {
       var errMsg = sprintf('Missing mandatory environment variable: %s', envVar);
       console.log(errMsg);
       throw new Error(errMsg);

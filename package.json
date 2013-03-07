@@ -4,6 +4,10 @@
   "appFilename": "APPLICATION_FILENAME",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "cd server; npm start",
+    "test": "grunt test"
+  },
   "devDependencies": {
     "grunt": "~0.4.x",
     "grunt-contrib": "~0.4.x",

@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "cd server; npm start",
-    "test": "grunt test"
+    "test": "grunt test",
+    "devserver": "cd server; node_modules/node-dev/bin/node-dev server"
   },
   "devDependencies": {
     "grunt": "~0.4.x",

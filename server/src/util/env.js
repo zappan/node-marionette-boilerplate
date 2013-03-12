@@ -8,6 +8,7 @@ var _       = require('lodash')
     // list of mandatory environment variables
   , mandatoryEnvVars  = [
         'APP_PORT'
+      , 'MONGO_CONN_STRING'
       , 'LOGGING_SERVERAPP_TRESHOLD'
       , 'LOGGING_CLIENTAPP_TRESHOLD'
       , 'LOGGING_BROWSER_CONSOLE_TRESHOLD'

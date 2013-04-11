@@ -10,7 +10,7 @@
     "devserver": "cd server; node_modules/node-dev/bin/node-dev server"
   },
   "devDependencies": {
-    "grunt": "~0.4.x",
+    "grunt": "~0.4.1",
     "grunt-contrib": "~0.4.x",
     "grunt-mocha": "~0.2.x",
     "grunt-replace": "~0.4.x",
@@ -22,7 +22,7 @@
     "sinon": "~1.6.x",
     "sinon-chai": "~2.3.x",
     "sandboxed-module": "~0.2.x",
-    "grunt-simple-mocha": "~0.3.x",
+    "grunt-simple-mocha": "~0.4.x",
     "chai-jquery": "~1.1.x"
   }
 }

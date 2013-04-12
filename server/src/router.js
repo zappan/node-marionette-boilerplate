@@ -30,7 +30,7 @@ function init(options) {
 
   var assertErrFormat = funcPath(__dirname, __filename, init) + ' :: Fatal error! Missing parameter: %s'
     , uuidFormat  = /^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$/
-    , routes
+    , controllers
     , app
     ;
 
@@ -42,18 +42,18 @@ function init(options) {
   // ### routes initialization
   params.extend(app);
   app.param('uuid', uuidFormat);
-  routes = loadRoutes({ app: app, routeDir: __dirname + '/routes' });
+  controllers = loadRoutes({ app: app, routeDir: __dirname + '/controllers' });
 
   // ### app shell, common & services routes
-  app.get ('/'            , routes.home.index);
-  app.get ('/favicon.ico' , routes.home.favicon);
+  app.get ('/'            , controllers.home.index);
+  app.get ('/favicon.ico' , controllers.home.favicon);
 
   // ### Backbone bookmarkable URLs / API routes (filtered by request type format)
   app.namespace('/users', function() {
-    app.get ('/'        , routes.user.index);
-    app.post('/'        , routes.user.create);
-    app.get ('/:uuid'   , routes.user.read);
-    app.put ('/:uuid'   , routes.user.update);
+    app.get ('/'        , controllers.user.index);
+    app.post('/'        , controllers.user.create);
+    app.get ('/:uuid'   , controllers.user.read);
+    app.put ('/:uuid'   , controllers.user.update);
   });
 }
 

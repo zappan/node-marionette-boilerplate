@@ -5,9 +5,16 @@ function ($, _, Backbone, Marionette, eventRegistry) {
   var app = new Backbone.Marionette.Application()
     , onAppStart
     , unhideLayout
+    , setConsoleLogLevel
     ;
 
   // ----- INTERNAL METHODS -----
+
+  setConsoleLogLevel = function(logLevel) {
+    if (app.config && app.config.logConfig) {
+      app.config.logConfig.consoleLogTreshold = logLevel;
+    }
+  };
 
   // Called as callback on subapp layouts rendered, displays app when bootstrapped
   unhideLayout = function() {
@@ -18,23 +25,12 @@ function ($, _, Backbone, Marionette, eventRegistry) {
   onAppStart = function(options) {
     options = (options || {});
 
-    app.cache = {
+    _.extend(app.cache, {
         $document : $(document)
       , $window   : $(window)
       , $html     : $('html')
       , $body     : $('body')
-    };
-
-    // bootstrap the proper subapp based on the domain
-    var appConfig = window.appBootstrap.appConfig
-      , prefetchedData = window.appBootstrap.appData
-      ;
-
-    // clear config and prefetched data hanging off of global window object
-    try { delete window.appBootstrap; } catch (ev) { window.appBootstrap = undefined; }  // avoiding old IE-bug
-
-    // pull & store app options from module config
-    app.config.moduleName = appConfig.moduleName;
+    });
 
 
     // ==============================================================================
@@ -59,9 +55,15 @@ function ($, _, Backbone, Marionette, eventRegistry) {
 
   // ----- SETTING UP AND INITIALIZATION OF APPLICATION INTERNALS -----
 
-  // prepare shared app objects
-  app.config = (app.config || {});
-  app.prefetchedAppData = (app.prefetchedAppData || {});
+  // prepare shared app objects & clear from the global window object
+  app.cache = {
+      logData   : []
+    , logTimer  : null
+  };
+  app.config = (app.config || window.appBootstrap.appConfig || {});
+  app.prefetchedAppData = (app.prefetchedAppData || window.appBootstrap.appData || {});
+
+  try { delete window.appBootstrap; } catch (ev) { window.appBootstrap = undefined; }  // avoiding old IE-bug
 
   // attach application's event registry to event aggregator
   app.vent.registry = eventRegistry;
@@ -70,6 +72,9 @@ function ($, _, Backbone, Marionette, eventRegistry) {
   app.addRegions({
     container: '#container'
   });
+
+  // configure browser logging based on app config bootstrap data
+  setConsoleLogLevel(app.config.logConfig.browserLogTreshold);
 
 
   // ----- EVENTS BINDING -----
@@ -88,6 +93,7 @@ function ($, _, Backbone, Marionette, eventRegistry) {
   // ----- EXPOSE PUBLIC METHODS & APP INSTANCE -----
 
   // publicly exposed methods
+  app.setConsoleLogLevel = setConsoleLogLevel;
 
   // Exposing the application instance to the outer world
   return app;

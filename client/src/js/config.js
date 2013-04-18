@@ -23,6 +23,7 @@ require.config({
     , 'marionette.handlebars' : '../../assets/js/backbone.marionette.handlebars'
     , 'sockjs'                : '../../assets/js/sockjs'
     , 'sprintf'               : '../../assets/js/sprintf'
+    , 'debug'                 : '../../assets/js/ba-debug'
   },
 
   // configuring require.js handlebars plugin
@@ -43,4 +44,4 @@ require.config({
 });
 
 // invoke shims that need to be preloaded unrealated to any particular module here (jquery plugins, etc.)
-require(['jquery'], function($) {});
+require(['jquery', 'debug'], function($) {});

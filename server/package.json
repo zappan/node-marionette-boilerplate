@@ -18,7 +18,8 @@
     "node-module-util": "~0.1.x",
     "node-routes-autoload": "~0.1.x",
     "express-namespace": "~0.1.1",
-    "winston": "~0.6.2"
+    "winston": "~0.6.2",
+    "ua-parser": "~0.3.2"
   },
   "devDependencies": {
     "node-dev": "~2.0.0"

@@ -1,7 +1,9 @@
-var path = require('path')
-  , assert = require('assert')
-  , sprintf = require('sprintf').sprintf
-  , funcPath = require('node-module-util').funcPath
+var path      = require('path')
+  , assert    = require('assert')
+  , uaParser  = require('ua-parser')
+  , sprintf   = require('sprintf').sprintf
+  , funcPath  = require('node-module-util').funcPath
+  , logger    = require('../util/logging')
   , app
   , faviconPath
   ;
@@ -15,6 +17,21 @@ function index(req, res){
 // GET /favicon.ico
 function favicon(req, res) {
   res.sendfile(faviconPath);
+}
+
+// POST /log
+function log(req, res) {
+  var uaHeader = req.headers['user-agent']
+    , options = {
+        logLevel  : req.body.logLevel
+      , logData   : req.body.logData
+      , ip        : req.ip
+      , os        : uaParser.parseOS(uaHeader).toString()
+      , dev       : uaParser.parseDevice(uaHeader).toString()
+      , ua        : uaParser.parseUA(uaHeader).toString()
+    };
+  logger.writeClientLog(options);
+  res.send(200);
 }
 
 
@@ -31,6 +48,7 @@ function init(options) {
   return {
       index   : index
     , favicon : favicon
+    , log     : log
   };
 }
 

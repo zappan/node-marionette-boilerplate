@@ -47,6 +47,7 @@ function init(options) {
   // ### app shell, common & services routes
   app.get ('/'            , controllers.home.index);
   app.get ('/favicon.ico' , controllers.home.favicon);
+  app.post('/log'         , controllers.home.log);
 
   // ### Backbone bookmarkable URLs / API routes (filtered by request type format)
   app.namespace('/users', function() {

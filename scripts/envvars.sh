@@ -12,7 +12,7 @@ export APP_PORT=3000
 # LOGGING
 export LOGGING_SERVERAPP_TRESHOLD=debug
 export LOGGING_CLIENTAPP_TRESHOLD=debug
-export LOGGING_BROWSER_CONSOLE_TRESHOLD=debug    # optional envVar
+export LOGGING_BROWSER_CONSOLE_TRESHOLD=debug
 # server-side console
 export LOGGING_CONSOLE_ACTIVE=true
 # server-side file

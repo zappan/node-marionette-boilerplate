@@ -5,6 +5,7 @@ require('./util/env');  // FIRST => Environment check (check is a self-invoked f
 
 var _             = require('lodash')
   , winston       = require('winston')
+  , logConfig     = require('./util/logging').init()  // initializes logging so other components may log
   , sprintf       = require('sprintf').sprintf
   , funcPath      = require('node-module-util').funcPath
   ;
@@ -13,7 +14,8 @@ var _             = require('lodash')
 function _getAppConfig(options) {
 
   return {
-      appTitle: options.appTitle
+      appTitle  : options.appTitle
+    , logConfig : logConfig
   };
 }
 

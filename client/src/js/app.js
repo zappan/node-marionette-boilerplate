@@ -4,6 +4,7 @@ function ($, _, Backbone, Marionette, eventRegistry) {
 
   var app = new Backbone.Marionette.Application()
     , onAppStart
+    , onLayoutRendered
     , unhideLayout
     , setConsoleLogLevel
     ;
@@ -21,10 +22,10 @@ function ($, _, Backbone, Marionette, eventRegistry) {
     app.cache.$html.removeClass('hidden');
   };
 
-  // Processes application configuration and bootstraps itself for running.
-  onAppStart = function(options) {
-    options = (options || {});
 
+  // Called as callback on app default layout rendered
+  onLayoutRendered = function() {
+    // construct common jQuery elements cache
     _.extend(app.cache, {
         $document : $(document)
       , $window   : $(window)
@@ -32,6 +33,13 @@ function ($, _, Backbone, Marionette, eventRegistry) {
       , $body     : $('body')
     });
 
+    // unhide the body when layout rendered
+    unhideLayout();
+  };
+
+  // Processes application configuration and bootstraps itself for running.
+  onAppStart = function(options) {
+    options = (options || {});
 
     // ==============================================================================
     // after subApp modules are bootstrapped (happens via submodules initializers),
@@ -79,7 +87,7 @@ function ($, _, Backbone, Marionette, eventRegistry) {
 
   // ----- EVENTS BINDING -----
 
-  app.vent.on(eventRegistry.layout.defaultRendered, unhideLayout);  // unhide the body when subapps' modules layouts rendered
+  app.vent.on(eventRegistry.layout.defaultRendered, onLayoutRendered);  // unhide the body when subapps' modules layouts rendered
   app.on('start', onAppStart);  // after started event occured, additional initalization application and bootstraping
 
 

@@ -1,13 +1,13 @@
 // Main application layout module
 define([
-    'jquery', 'underscore', 'sprintf', 'backbone', 'backbone.marionette', 'marionette.handlebars'
+    'jquery', 'underscore', 'backbone', 'backbone.marionette', 'marionette.handlebars', 'util/logger'
   , 'app', 'hbs!templates/layout'],
-function ($, _, sprintf, Backbone, Marionette, MarionetteHandlebars, app, tpl) {
+function ($, _, Backbone, Marionette, MarionetteHandlebars, log, app, tpl) {
 
-  var DefaultLayout
+  var Layout
     , layout = app.vent.registry.layout;
 
-  DefaultLayout = Backbone.Marionette.Layout.extend({
+  Layout = Backbone.Marionette.Layout.extend({
 
     template: {
         type : 'handlebars'
@@ -25,15 +25,13 @@ function ($, _, sprintf, Backbone, Marionette, MarionetteHandlebars, app, tpl) {
 
 
   app.addInitializer(function () {
+    app.layout = new Layout();
 
-    app.layout = new DefaultLayout();
-
-    app.layout.on('show', function() {
+    app.listenTo(app.layout, 'show', function() {
+      log.debug('[default.layout] layout displayed');
       app.vent.trigger(layout.defaultRendered);
     });
 
     app.container.show(app.layout);
   });
-
-  return DefaultLayout;
 });

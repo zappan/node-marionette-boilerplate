@@ -63,6 +63,16 @@ function ($, _, Backbone, Marionette, eventRegistry) {
 
   // ----- SETTING UP AND INITIALIZATION OF APPLICATION INTERNALS -----
 
+  // logic for starting subapps, triggered by subapps routers
+  app.startSubApp = function(appName, args) {
+    var selectedApp = app.module(appName);
+    if (app.currentApp === selectedApp) { return; }
+
+    if (app.currentApp) { app.currentApp.stop(); }
+    app.currentApp = selectedApp;
+    app.currentApp.start(args);
+  };
+
   // prepare shared app objects & clear from the global window object
   app.cache = {
       logData   : []

@@ -54,7 +54,7 @@ function ($, _, Backbone, Marionette, eventRegistry) {
     //       the routes to the REST services accessed pass through
     // ==============================================================================
 
-    Backbone.history.start({ pushState: true, root: "/app/" });
+    Backbone.history.start({ pushState: true, root: '/' });
 
     // announce bootstrapping finished
     app.vent.trigger(app.vent.registry.app.bootstrapped);

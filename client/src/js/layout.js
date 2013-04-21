@@ -16,9 +16,17 @@ function ($, _, Backbone, Marionette, MarionetteHandlebars, log, app, tpl) {
 
     regions: {
       main: '#main'
-    }
+    },
+
+    events: {
+      'click a' : 'onNavItemClicked'
+    },
 
     // ----- EVENTS HANDLERS -----
+    onNavItemClicked: function(ev) {
+      ev.preventDefault();
+      Backbone.history.navigate(ev.target.pathname, true);
+    }
 
     // ----- PUBLIC METHODS -----
   });

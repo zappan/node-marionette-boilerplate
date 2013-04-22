@@ -39,7 +39,10 @@ function init(options) {
   var assert  = require('assert')
     , path    = require('path')
     , express = require('express')
+      // Connect middleware
     , reqTypeOverride = require('connect-request-type-override')
+    , SpaReqFilter    = require('connect-spa-request-filter')
+    , spaReqFilter
       // Express app
     , app = express()
     , server
@@ -52,6 +55,7 @@ function init(options) {
   assert(options.Router, sprintf(assertErrFormat, 'options.Router'));
 
   app.renderAppShell = _renderAppShell;
+  spaReqFilter = SpaReqFilter.init({ app: app });
 
   app.configure(function(){
     var publicPath = path.normalize(__dirname + '/../public');
@@ -75,6 +79,7 @@ function init(options) {
     app.use(reqTypeOverride());           // allows request type override via querystring param
     app.use(app.router);                  // activates routing in the pipeline
     app.use(express.static(publicPath));
+    app.use(spaReqFilter());              // activates interceptor for serving SPA app shell HTML (*after* static middleware)
   });
 
   app.configure('development', function(){

@@ -13,18 +13,6 @@ var _           = require('lodash')
   , loadRoutes  = require('node-routes-autoload').loadRoutes
   ;
 
-function renderAppShell(res, appConfig, appData) {
-  appConfig = appConfig || {};
-  appData = appData || {};
-
-  res.render('index', {
-      layout    : false
-    , appTitle  : appConfig.appTitle
-    , appConfig : JSON.stringify(appConfig)
-    , appData   : JSON.stringify(appData)
-  });
-}
-
 function init(options) {
   options = (options || {});
 
@@ -37,7 +25,6 @@ function init(options) {
   assert(options.app, sprintf(assertErrFormat, 'options.app'));
 
   app = options.app;
-  app.renderAppShell = renderAppShell;
 
   // ### routes initialization
   params.extend(app);

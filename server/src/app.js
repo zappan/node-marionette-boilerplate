@@ -12,14 +12,27 @@ var _             = require('lodash')
 
 // gets app config from passed in options, env vars and local config if available
 function _getAppConfig(options) {
-
   return {
       appTitle  : options.appTitle
     , logConfig : logConfig
   };
 }
 
+// a function that renders client-side single page application shell HTML file
+function _renderAppShell(res, appConfig, appData) {
+  appConfig = appConfig || {};
+  appData = appData || {};
 
+  res.render('index', {
+      layout    : false
+    , appTitle  : appConfig.appTitle
+    , appConfig : JSON.stringify(appConfig)
+    , appData   : JSON.stringify(appData)
+  });
+}
+
+
+// main application initializer function
 function init(options) {
   options = options || {};
 
@@ -37,6 +50,8 @@ function init(options) {
   assert(options.appName, sprintf(assertErrFormat, 'options.appName'));
   assert(options.appPort, sprintf(assertErrFormat, 'options.appPort'));
   assert(options.Router, sprintf(assertErrFormat, 'options.Router'));
+
+  app.renderAppShell = _renderAppShell;
 
   app.configure(function(){
     var publicPath = path.normalize(__dirname + '/../public');

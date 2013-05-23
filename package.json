@@ -11,11 +11,11 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib": "~0.4.x",
+    "grunt-contrib": "~0.6.x",
     "grunt-mocha": "~0.2.x",
     "grunt-replace": "~0.4.x",
     "grunt-shell": "~0.2.x",
-    "lodash": "~1.0.x",
+    "lodash": "~1.2.x",
     "requirejs": "~2.1.x",
     "mocha": "~1.8.x",
     "chai": "~1.5.x",

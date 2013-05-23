@@ -10,17 +10,17 @@
   },
   "dependencies": {
     "express": "~3.1.x",
-    "lodash": "~1.0.x",
+    "lodash": "~1.2.x",
     "lodashinexpress": "~0.1.x",
     "sprintf": "~0.1.x",
     "express-params": "0.0.x",
     "connect-request-type-override": "~0.1.x",
     "node-module-util": "~0.1.x",
-    "node-routes-autoload": "~0.1.x",
+    "node-routes-autoload": "~0.3.x",
     "express-namespace": "~0.1.1",
     "winston": "~0.6.2",
     "ua-parser": "~0.3.2",
-    "connect-spa-request-filter": "~0.1.0"
+    "connect-spa-request-filter": "~0.2.0"
   },
   "devDependencies": {
     "node-dev": "~2.0.0"

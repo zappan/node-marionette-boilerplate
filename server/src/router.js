@@ -10,7 +10,7 @@ var _           = require('lodash')
   , params      = require('express-params')
   , sprintf     = require('sprintf').sprintf
   , funcPath    = require('node-module-util').funcPath
-  , loadRoutes  = require('node-routes-autoload').loadRoutes
+  , loadControllers  = require('node-routes-autoload').loadControllers
   ;
 
 function init(options) {
@@ -29,7 +29,11 @@ function init(options) {
   // ### routes initialization
   params.extend(app);
   app.param('uuid', uuidFormat);
-  controllers = loadRoutes({ app: app, routeDir: __dirname + '/controllers' });
+  controllers = loadControllers({
+      app: app
+    , controllerDir: __dirname + '/controllers'
+    , skipControllers: ['']
+  });
 
   // ### app shell, common & services routes
   app.get ('/'            , controllers.home.index);

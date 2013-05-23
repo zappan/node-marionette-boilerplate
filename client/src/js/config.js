@@ -16,6 +16,7 @@ require.config({
     , 'backbone.marionette'   : '../../assets/js/backbone.marionette'
     , 'backbone.babysitter'   : '../../assets/js/backbone.babysitter'
     , 'backbone.wreqr'        : '../../assets/js/backbone.wreqr'
+    , 'backbone.routefilter'  : '../../assets/js/backbone.routefilter'
     , 'handlebars'            : '../../assets/js/handlebars'
     , 'hbs'                   : '../../assets/js/hbs'
     , 'i18nprecompile'        : '../../assets/js/hbs/i18nprecompile'
@@ -40,8 +41,9 @@ require.config({
     , 'marionette'      : { exports: 'Backbone.Marionette', deps: ['backbone'] }
     , 'sockjs'          : { exports: 'sockjs' }
     , 'sprintf'         : { exports: 'sprintf' }
+    , 'backbone.routefilter'  : { deps: ['backbone'] }
   }
 });
 
 // invoke shims that need to be preloaded unrealated to any particular module here (jquery plugins, etc.)
-require(['jquery', 'debug'], function($) {});
+require(['jquery', 'debug', 'backbone.routefilter'], function($) {});

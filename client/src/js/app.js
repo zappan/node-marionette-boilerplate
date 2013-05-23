@@ -23,20 +23,6 @@ function ($, _, Backbone, Marionette, eventRegistry) {
   };
 
 
-  // Called as callback on app default layout rendered
-  onLayoutRendered = function() {
-    // construct common jQuery elements cache
-    _.extend(app.cache, {
-        $document : $(document)
-      , $window   : $(window)
-      , $html     : $('html')
-      , $body     : $('body')
-    });
-
-    // unhide the body when layout rendered
-    unhideLayout();
-  };
-
   // Processes application configuration and bootstraps itself for running.
   onAppStart = function(options) {
     options = (options || {});
@@ -55,6 +41,17 @@ function ($, _, Backbone, Marionette, eventRegistry) {
     // ==============================================================================
 
     Backbone.history.start({ pushState: true, root: '/' });
+
+    // construct common jQuery elements cache
+    _.extend(app.cache, {
+        $document : $(document)
+      , $window   : $(window)
+      , $html     : $('html')
+      , $body     : $('body')
+    });
+
+    // unhide the body when layout rendered
+    unhideLayout();
 
     // announce bootstrapping finished
     app.vent.trigger(app.vent.registry.app.bootstrapped);
@@ -97,8 +94,7 @@ function ($, _, Backbone, Marionette, eventRegistry) {
 
   // ----- EVENTS BINDING -----
 
-  app.vent.on(eventRegistry.layout.defaultRendered, onLayoutRendered);  // unhide the body when subapps' modules layouts rendered
-  app.on('start', onAppStart);  // after started event occured, additional initalization application and bootstraping
+  app.listenTo(app, 'start', onAppStart);  // after started event occured, additional initalization application and bootstraping
 
 
   // -------------------- AJAX GLOBALS -------------------- //

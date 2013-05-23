@@ -17,6 +17,7 @@ require.config({
     , 'backbone.babysitter'   : '../../assets/js/backbone.babysitter'
     , 'backbone.wreqr'        : '../../assets/js/backbone.wreqr'
     , 'backbone.routefilter'  : '../../assets/js/backbone.routefilter'
+    , 'backbone.syphon'       : '../../assets/js/backbone.syphon'
     , 'handlebars'            : '../../assets/js/handlebars'
     , 'hbs'                   : '../../assets/js/hbs'
     , 'i18nprecompile'        : '../../assets/js/hbs/i18nprecompile'

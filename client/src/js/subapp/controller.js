@@ -6,10 +6,12 @@ define(['jquery', 'underscore', 'backbone', 'backbone.marionette', 'util/logger'
 
   return Marionette.Controller.extend({
 
+    _show: function (view) { app.SubApp.layout.main.show(view); },
+
     index: function() {
       log.debug('[subapp.controller] index action');
       var view = new IndexView();
-      app.layout.main.show(view);
+      this._show(view);
     }
   });
 });

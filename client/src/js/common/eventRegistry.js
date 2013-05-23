@@ -10,7 +10,8 @@ define([], function () {
     },
 
     layout: {
-        defaultRendered : 'layout:default:rendered'
+        defaultAppRendered  : 'layout:defaultapp:rendered'
+      , subAppRendered      : 'layout:subapp:rendered'
     },
   };
 

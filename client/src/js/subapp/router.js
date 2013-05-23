@@ -1,29 +1,26 @@
-define(['jquery', 'underscore', 'backbone', 'backbone.marionette', 'util/logger'
-  , 'app', 'subapp/controller'
-], function ($, _, Backbone, Marionette, log, app, Controller) {
+define(['jquery', 'underscore', 'backbone', 'backbone.marionette', 'util/logger', 'app'
+], function ($, _, Backbone, Marionette, log, app) {
 
-  var controller = new Controller()
-    , Router;
+  var Router;
 
   Router = Marionette.AppRouter.extend({
 
-    controller: controller,
+    before: function() {
+      app.startSubApp('SubApp', {});
+    },
 
-    appRoutes: {
+    routes: {
         'subapp/index'  : 'index'
     },
 
-    before: function() {
-      app.startSubApp('SubApp', {});
-    }
+    index: function()   { app.SubApp.controller.index(arguments); }
   });
 
   // Routers initialize with the main app so they can respond to route changes and start the subapp
   app.addInitializer(function() {
-    var subApp = app.submodules.SubApp
-      , router = subApp.router = new Router();
+    var router = app.SubApp.router = new Router();
 
-    subApp.listenTo(router, 'all', function(route) {
+    router.listenTo(router, 'all', function(route) {
       log.debug('[subapp.router] route triggered: ' + route);
     });
 

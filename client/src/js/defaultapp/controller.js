@@ -6,10 +6,12 @@ define(['jquery', 'underscore', 'backbone', 'backbone.marionette', 'util/logger'
 
   return Marionette.Controller.extend({
 
+    _show: function (view) { app.DefaultApp.layout.main.show(view); },
+
     home: function() {
       log.debug('[defaultapp.controller] home action');
       var view = new HomeView();
-      app.layout.main.show(view);
+      this._show(view);
     }
   });
 });

@@ -148,9 +148,9 @@ module.exports = function(grunt) {
           },
           force: true
         },
-        files: {
-          '<%= dirs.target %>/' : ['<%= dirs.srcClient %>/*.html']
-        }
+        files: [
+            { expand: true, flatten: true, dest: '<%= dirs.target %>/', src: ['<%= dirs.srcClient %>/*.html'] }
+        ]
       },
       debug: {
         options: {
@@ -161,9 +161,9 @@ module.exports = function(grunt) {
           },
           force: true
         },
-        files: {
-          '<%= dirs.publicBuild %>/': ['<%= dirs.srcClient %>/*.html']
-        }
+        files: [
+            { expand: true, flatten: true, dest: '<%= dirs.publicBuild %>/', src: ['<%= dirs.srcClient %>/*.html'] }
+        ]
       },
       release: {
         options: {
@@ -174,9 +174,9 @@ module.exports = function(grunt) {
           },
           force: true
         },
-        files: {
-          '<%= dirs.publicBuild %>/': ['<%= dirs.srcClient %>/*.html']
-        }
+        files: [
+            { expand: true, flatten: true, dest: '<%= dirs.publicBuild %>/', src: ['<%= dirs.srcClient %>/*.html'] }
+        ]
       }
     },
 
